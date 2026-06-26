@@ -1,10 +1,18 @@
 :root {
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
   --black: #0a0a0a;
   --white: #fafafa;
   --gray: #888888;
+  color-scheme: light;
+}
 
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+[data-theme='dark'] {
+  --black: #fafafa;
+  --white: #0a0a0a;
+  --gray: #999999;
+  color-scheme: dark;
 }
 
 *,

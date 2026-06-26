@@ -1,5 +1,12 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import { CustomCursor } from './components/CustomCursor'
+
+function getInitialTheme() {
+  const stored = localStorage.getItem('theme')
+  if (stored === 'dark' || stored === 'light') return stored
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
 
 const SKILLS = [
   'Node.js',
@@ -20,6 +27,15 @@ const SOCIAL = [
 ]
 
 function App() {
+  const [theme, setTheme] = useState(getInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+
   return (
     <>
       <CustomCursor />
@@ -27,14 +43,24 @@ function App() {
       <div className="site">
         <header className="header">
           <a href="#home" className="logo interactive">MP</a>
-          <nav>
-            <ul className="nav">
-              <li><a href="#home" className="interactive">Home</a></li>
-              <li><a href="#about" className="interactive">About</a></li>
-              <li><a href="#skills" className="interactive">Skills</a></li>
-              <li><a href="#contact" className="interactive">Contact</a></li>
-            </ul>
-          </nav>
+          <div className="header-actions">
+            <nav>
+              <ul className="nav">
+                <li><a href="#home" className="interactive">Home</a></li>
+                <li><a href="#about" className="interactive">About</a></li>
+                <li><a href="#skills" className="interactive">Skills</a></li>
+                <li><a href="#contact" className="interactive">Contact</a></li>
+              </ul>
+            </nav>
+            <button
+              type="button"
+              className="theme-toggle interactive"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </button>
+          </div>
         </header>
 
         <main>

@@ -53,6 +53,31 @@
   text-decoration: none;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--black);
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  cursor: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
 .nav {
   display: flex;
   gap: 32px;
@@ -280,12 +305,21 @@
     padding: 20px 0;
   }
 
+  .header-actions {
+    gap: 20px;
+  }
+
   .nav {
     gap: 20px;
   }
 
   .nav a {
     font-size: 11px;
+  }
+
+  .theme-toggle {
+    font-size: 10px;
+    padding: 6px 10px;
   }
 
   .hero {
